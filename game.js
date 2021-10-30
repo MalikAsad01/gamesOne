@@ -9,7 +9,8 @@ function Bear() {
     this.y += this.dBear * yDir;
     this.display();
     this.fitBounds(); 
-    //we add this instruction to keep bear within board this.x += this.dBear * xDir;
+    //we add this instruction to keep bear within board 
+    this.x += this.dBear * xDir;
     this.y += this.dBear * yDir;
     this.display();
 
@@ -65,7 +66,8 @@ function moveBear(e) {
 
 class Bee {
   constructor(beeNumber) {
-    //the HTML element corresponding to the IMG of the bee this.htmlElement = createBeeImg(beeNumber);
+    //the HTML element corresponding to the IMG of the bee 
+    this.htmlElement = createBeeImg(beeNumber);
     //iits HTML ID
     this.id = this.htmlElement.id;
     //the left position (x)
@@ -81,13 +83,16 @@ class Bee {
     };
 
     this.display = function() {
-      //adjust position of bee and display it this.fitBounds();//add this to adjust to bounds this.htmlElement.style.left = this.x + "px";
+      //adjust position of bee and display it 
+      this.fitBounds();//add this to adjust to bounds 
+      this.htmlElement.style.left = this.x + "px";
       this.htmlElement.style.top = this.y + "px"; 
       this.htmlElement.style.display = "block";
     };
 
     this.fitBounds = function() {
-      //check and make sure the bees stays in the board space let parent = this.htmlElement.parentElement;
+      //check and make sure the bees stays in the board space 
+      let parent = this.htmlElement.parentElement;
       let iw = this.htmlElement.offsetWidth;
       let ih = this.htmlElement.offsetHeight; 
       let l = parent.offsetLeft;
@@ -119,7 +124,8 @@ function createBeeImg(wNum) {
   img.setAttribute("width", "100"); img.setAttribute("alt", "A bee!"); 
   img.setAttribute("id", "bee" + wNum);
   img.setAttribute("class", "bee"); //set class of html tag img
-  //add the IMG element to the DOM as a child of the board div img.style.position = "absolute";
+  //add the IMG element to the DOM as a child of the board 
+  div img.style.position = "absolute";
   boardDiv.appendChild(img);
   //set initial position
   let x = getRandomInt(boardDivW);
