@@ -8,6 +8,11 @@ function Bear() {
     this.x += this.dBear * xDir; 
     this.y += this.dBear * yDir;
     this.display();
+    this.fitBounds(); 
+    //we add this instruction to keep bear within board this.x += this.dBear * xDir;
+    this.y += this.dBear * yDir;
+    this.display();
+
   };
 
   this.display = function() {
