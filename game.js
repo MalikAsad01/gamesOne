@@ -20,8 +20,11 @@ this.display = function() {
 }
 
 function start() {
-//create bear
+   //create bear
    bear = new Bear();
+   // Add an event listener to the keypress event.
+   document.addEventListener("keydown", moveBear, false);
+
 }
 
 // Handle keyboad events
@@ -45,6 +48,6 @@ function moveBear(e) {
   if (e.keyCode == KEYDOWN) { 
     bear.move(0, 1)
   } // down key
- }
+}
 
 
