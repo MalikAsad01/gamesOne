@@ -19,3 +19,9 @@ this.display = function() {
 
 }
 
+function start() {
+//create bear
+   bear = new Bear();
+}
+
+
