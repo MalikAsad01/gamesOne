@@ -43,6 +43,10 @@ function start() {
    bear = new Bear();
    // Add an event listener to the keypress event.
    document.addEventListener("keydown", moveBear, false);
+   //create new array for bees
+   bees = new Array();
+   //create bees makeBees();
+   makeBees();
 
 }
 
