@@ -106,6 +106,10 @@ class Bee {
   }
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function createBeeImg(wNum) {
   //get dimension and position of board div
   let boardDiv = document.getElementById("board");
@@ -151,18 +155,6 @@ function makeBees() {
   }
 }
 
-function moveBees() {
-  //get speed input field value
-  let speed = document.getElementById("speedBees").value;
-  //move each bee to a random location
-  for (let i = 0; i < bees.length; i++) {
-    let dx = getRandomInt(2 * speed) - speed;
-    let dy = getRandomInt(2 * speed) - speed;
-    bees[i].move(dx, dy);
-    isHit(bees[i], bear); //we add this to count stings
-  }
-}
-
 function updateBees() {
   // update loop for game
   //move the bees randomly
@@ -176,24 +168,33 @@ function updateBees() {
 function overlap(element1, element2) {
   //consider the two rectangles wrapping the two elements
   //rectangle of the first element
-  left1 = element1.htmlElement.offsetLeft;
-  top1 = element1.htmlElement.offsetTop;
-  right1 = element1.htmlElement.offsetLeft + element1.htmlElement.offsetWidth;
-  bottom1 = element1.htmlElement.offsetTop + element1.htmlElement.offsetHeight;
+  let left1 = element1.htmlElement.offsetLeft;
+  let top1 = element1.htmlElement.offsetTop;
+  let right1 =
+    element1.htmlElement.offsetLeft + element1.htmlElement.offsetWidth;
+  let bottom1 =
+    element1.htmlElement.offsetTop + element1.htmlElement.offsetHeight;
 
   //rectangle of the second element
-  left2 = element2.htmlElement.offsetLeft; //e2x
-  top2 = element2.htmlElement.offsetTop; //e2y
-  right2 = element2.htmlElement.offsetLeft + element2.htmlElement.offsetWidth;
-  bottom2 = element2.htmlElement.offsetTop + element2.htmlElement.offsetHeight;
+  let left2 = element2.htmlElement.offsetLeft; //e2x
+  let top2 = element2.htmlElement.offsetTop; //e2y
+  let right2 =
+    element2.htmlElement.offsetLeft + element2.htmlElement.offsetWidth;
+  let bottom2 =
+    element2.htmlElement.offsetTop + element2.htmlElement.offsetHeight;
 
   //calculate the intersection of the two rectangles
-  x_intersect = Math.max(0, Math.min(right1, right2) - Math.max(left1, left2));
-  y_intersect = Math.max(0, Math.min(bottom1, bottom2) - Math.max(top1, top2));
-  intersectArea = x_intersect * y_intersect;
-
+  let x_intersect = Math.max(
+    0,
+    Math.min(right1, right2) - Math.max(left1, left2)
+  );
+  let y_intersect = Math.max(
+    0,
+    Math.min(bottom1, bottom2) - Math.max(top1, top2)
+  );
+  let intersectArea = x_intersect * y_intersect;
   //if intersection is nil no hit
-  if (intersectArea == 0 || isNaN(intersectArea)) {
+  if (intersectArea === 0 || isNaN(intersectArea)) {
     return false;
   }
   return true;
@@ -219,13 +220,25 @@ function isHit(defender, offender) {
   }
 }
 
+function moveBees() {
+  //get speed input field value
+  let speed = document.getElementById("speedBees").value;
+  //move each bee to a random location
+  for (let i = 0; i < bees.length; i++) {
+    let dx = getRandomInt(2 * speed) - speed;
+    let dy = getRandomInt(2 * speed) - speed;
+    bees[i].move(dx, dy);
+    isHit(bees[i], bear); //we add this to count stings
+  }
+}
+
 function start() {
   //create bear
   bear = new Bear();
   // Add an event listener to the keypress event.
   document.addEventListener("keydown", moveBear, false);
   //create new array for bees
-  bees = new Array();
+  bees = [];
   //create bees
   makeBees();
   updateBees();
