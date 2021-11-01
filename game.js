@@ -81,6 +81,7 @@ class Bee {
     this.x = this.htmlElement.offsetLeft;
     //the top position (y)
     this.y = this.htmlElement.offsetTop;
+
     this.move = function (dx, dy) {
       //move the bees by dx, dy
       this.fitBounds();
@@ -184,8 +185,8 @@ function moveBees() {
 
 function addBee() {
   var bee = new Bee(1);
-  bee.display;
-  bee.push(bee);
+  bee.display();
+  bees.push(bee);
 }
 
 function updateBees() {
@@ -200,7 +201,7 @@ function updateBees() {
     alert("Game Over");
     clearTimeout();
   } else {
-    updateTimer = setTimeout("updateBees()", period);
+    Timer = setTimeout("updateBees()", period);
   }
 }
 
